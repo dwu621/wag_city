@@ -115,7 +115,7 @@ const DeleteUser = async (req, res) => {
     } catch (error) {
       throw error
     }
-  }
+}
 
 module.exports = {
     GetAllUsers,

@@ -1,4 +1,3 @@
-const res = require('express/lib/response')
 const { Dog, User } = require('../models')
 
 const CreateDog = async (req,res) => {
