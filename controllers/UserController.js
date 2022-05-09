@@ -1,5 +1,13 @@
-const res = require('express/lib/response')
 const { User, Dog, Job } = require('../models')
+
+const GetAllUsers = async (req, res) => {
+    try {
+        const users = await User.findAll()
+        res.send(users)
+    } catch (error) {
+        throw error
+    }
+}
 
 const GetOwners = async (req, res) => {
     try {
@@ -72,10 +80,10 @@ const GetWalkerDetails = async (req, res) => {
                     id: req.params.user_id 
                 },
                 include: [
-                {
-                    model: Job,
-                    as: 'job_accepted'
-                }
+                    {
+                        model: Job,
+                        as: 'job_accepted'
+                    }
                 ]
         })
         res.send(walker)
@@ -110,6 +118,7 @@ const DeleteUser = async (req, res) => {
   }
 
 module.exports = {
+    GetAllUsers,
     GetOwners,
     GetWalkers,
     GetOwnerDetails,
