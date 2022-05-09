@@ -11,7 +11,7 @@ module.exports = {
           weight: 15,
           breed: 'Poodle',
           image:'https://placedog.net/500',
-          ownerId: 2,
+          ownerId: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -21,7 +21,7 @@ module.exports = {
           weight: 65,
           breed: 'Husky',
           image:'https://placedog.net/500',
-          ownerId: 2,
+          ownerId: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         }

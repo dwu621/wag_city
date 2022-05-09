@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         onUpdate:'CASCADE'
       })
-      Job.hasOne(models.Dog, {
+      Job.belongsTo(models.Dog, {
         as: 'dog',
         foreignKey: 'dogId',
         onDelete: 'CASCADE',
