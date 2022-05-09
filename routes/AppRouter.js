@@ -5,6 +5,6 @@ const JobRouter = require('./JobRouter')
 
 Router.use('/user', UserRouter)
 Router.use('/dog', DogRouter)
-Router.use('/job', JobRouter)
+// Router.use('/job', JobRouter)
 
 module.exports = Router
