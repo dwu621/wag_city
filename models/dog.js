@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Dog.belongsTo(models.User, {
+        as: 'owner',
+        foreignKey: 'ownerId',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      })
     }
   }
   Dog.init({
@@ -19,7 +25,15 @@ module.exports = (sequelize, DataTypes) => {
     weight: DataTypes.INTEGER,
     breed: DataTypes.STRING,
     image: DataTypes.STRING,
-    ownerId: DataTypes.INTEGER
+    ownerId: {
+      type: DataTypes.INTEGER,
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+      references: {
+        model: 'users',
+        key: 'id'
+      }
+    } 
   }, {
     sequelize,
     modelName: 'Dog',

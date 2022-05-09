@@ -11,6 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Job.belongsTo(models.User, {
+        as: 'posted_by',
+        foreignKey: 'ownerId',
+        onDelete: 'CASCADE',
+        onUpdate:'CASCADE'
+      }),
+      Job.belongsTo(models.User, {
+        as: 'accepted_by',
+        foreignKey: 'walkerId',
+        onDelete: 'CASCADE',
+        onUpdate:'CASCADE'
+      })
+      Job.hasOne(models.Dog, {
+        as: 'dog',
+        foreignKey: 'dogId',
+        onDelete: 'CASCADE',
+        onUpdate:'CASCADE'
+      })
+
     }
   }
   Job.init({
@@ -19,9 +38,33 @@ module.exports = (sequelize, DataTypes) => {
     walkDuration: DataTypes.INTEGER,
     isAccepted: DataTypes.BOOLEAN,
     isComplete: DataTypes.BOOLEAN,
-    ownerId: DataTypes.INTEGER,
-    walkerId: DataTypes.INTEGER,
-    dogId: DataTypes.INTEGER
+    ownerId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+    },
+    walkerId: {
+      type: DataTypes.INTEGER,
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+      references: {
+        model: 'users',
+        key: 'id'
+      }
+    },
+    dogId: {
+      type: DataTypes.INTEGER,
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+      references: {
+          model: 'dogs',
+          key: 'id'
+      }
+    } 
   }, {
     sequelize,
     modelName: 'Job',
