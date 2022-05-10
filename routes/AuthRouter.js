@@ -6,9 +6,15 @@ Router.post('/login', controller.LogIn)
 
 Router.post('/signup', controller.SignUp)
 
-Router.post('/update/:user_id', controller.UpdatePassword)
+Router.post('/update/:user_id',
+middleware.stripToken,
+middleware.verifyToken,
+controller.UpdatePassword)
 
-Router.get('/session', controller.CheckSession)
+Router.get('/session',
+middleware.stripToken,
+middleware.verifyToken, 
+controller.CheckSession)
 
 
 module.exports = Router
