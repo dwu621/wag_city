@@ -1,5 +1,6 @@
 const Router = require('express').Router()
 const controller = require('../controllers/JobController')
+const middleware = require('../middleware')
 
 Router.post('/', 
 middleware.stripToken,
