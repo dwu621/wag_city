@@ -6,7 +6,7 @@ Router.post('/login', controller.LogIn)
 
 Router.post('/signup', controller.SignUp)
 
-Router.post('/update/:user_id',
+Router.put('/update/:user_id',
 middleware.stripToken,
 middleware.verifyToken,
 controller.UpdatePassword)
