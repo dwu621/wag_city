@@ -10,7 +10,7 @@ const Header = () => {
     const { authenticated, user, handleLogOut } = useContext( DataContext )
 
     let authenticatedOptions
-    if (user) {
+    if (user && user.userType === 'Owner') {
         authenticatedOptions = (
          
                 <Nav className="ms-auto">
@@ -22,6 +22,17 @@ const Header = () => {
                 </Nav>
   
         )
+    } else if (user) {
+        authenticatedOptions = (
+         
+            <Nav className="ms-auto">
+                <Nav.Link href='profile'>{user.firstName}</Nav.Link>
+                <Nav.Link href='/'>Home</Nav.Link>
+                <Nav.Link href={`jobs`}>Jobs </Nav.Link>
+                <Nav.Link href='/' onClick={handleLogOut}>Signout</Nav.Link>
+            </Nav>
+
+    )
     }
     
     const publicOptions = (

@@ -22,7 +22,6 @@ const Login = () => {
       const payload = await SignInUser(formValues)
       setFormValues({ email: '', password: '' })
       setUser(payload)
-      console.log(payload, 'payload')
       toggleAuthenticated(true)
       navigate('/jobs')
       
@@ -44,7 +43,11 @@ const Login = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" name='password' placeholder="Password" onChange={handleChange}/>
               </Form.Group>
-              <Button variant="primary" type="submit">
+              <Button 
+                variant="primary" 
+                type="submit"
+                disabled={!formValues.email || !formValues.password}
+                >
                 Submit
               </Button>
             </Form>

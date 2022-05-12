@@ -1,6 +1,9 @@
-import { useState } from 'react'
-import { RegisterUser } from '../services/Auth'
-import { useNavigate } from 'react-router-dom'
+import { useState } from "react"
+import { RegisterUser } from "../services/Auth"
+import { useNavigate } from "react-router-dom"
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import './Login.css'
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -16,6 +19,7 @@ const SignUp = () => {
         image: '',
         userType: ''
     })
+   
 
     const handleChange = (e) => {
         setFormValues({ ...formValues, [e.target.name]: e.target.value })
@@ -41,130 +45,82 @@ const SignUp = () => {
         navigate('/login')
     }
 
-
-
-
     return (
-        <div className="signin col">
-        <div className="card-overlay centered">
-          <form className="col" onSubmit={handleSubmit}>
-            <div className="input-wrapper">
-              <input
-                onChange={handleChange}
-                name="firstName"
-                type="text"
-                placeholder="First Name"
-                value={formValues.firstName}
-                required
-              />
+        <div className="bg">
+            <div className="form-wrapper">
+                 <div className="login-form">
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3" controlId="firstName">
+                            <Form.Control type="text" name="firstName" placeholder="First Name" onChange={handleChange} />
+                        </Form.Group>
+                        
+                        <Form.Group className="mb-3" controlId="lastName">
+                            <Form.Control type="text" name="lastName" placeholder="Last Name" onChange={handleChange} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Control type="email" name="email" placeholder="Enter email" onChange={handleChange} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="password">
+                            <Form.Control type="password" name="password" placeholder="Password" onChange={handleChange} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="confirmPassword">
+                            <Form.Control type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="zipcode">
+                            <Form.Control type="integer" name="zipcode" placeholder="Zip Code" onChange={handleChange} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="image">
+                            <Form.Control type="text" name="image" placeholder="Add Picture" onChange={handleChange} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="bio">
+                            <Form.Control type="text" name="bio" placeholder="Short bio" onChange={handleChange} />
+                        </Form.Group>
+
+                       
+
+                            <Form.Check
+                                type='radio'
+                                name="userType"
+                                value="Owner"
+                                label='Owner'
+                                onChange={handleChange}
+                                required
+                            />
+
+                            <Form.Check 
+                                type='radio'
+                                name="userType"
+                                value="Walker"
+                                label='Walker'
+                                onChange={handleChange}
+                                required
+                            />
+                           
+                 
+                        <Button
+                            variant="primary" 
+                            type="submit"
+                            disabled={
+                                !formValues.email ||
+                                (!formValues.password &&
+                                  formValues.confirmPassword === formValues.password)
+                              }
+                        >Sign Up</Button>
+                        
+                    </Form>
+                </div>
             </div>
-            <div className="input-wrapper">
-          
-              <input
-                onChange={handleChange}
-                name="lastName"
-                type="text"
-                placeholder="Last Name"
-                value={formValues.lastName}
-                required
-              />
-            </div>
-            <div className="input-wrapper">
-              <input
-                onChange={handleChange}
-                name="email"
-                type="email"
-                placeholder="Email Address"
-                value={formValues.email}
-                required
-              />
-            </div>
-            <div className="input-wrapper">
-          
-              <input
-                onChange={handleChange}
-                type="password"
-                name="password"
-                placeholder='Password'
-                value={formValues.password}
-                required
-              />
-            </div>
-            <div className="input-wrapper">
-        
-              <input
-                onChange={handleChange}
-                type="password"
-                name="confirmPassword"
-                placeholder='Confirm Password'
-                value={formValues.confirmPassword}
-                required
-              />
-            </div>
-            <div className="input-wrapper">
-           
-              <input
-                onChange={handleChange}
-                type="integer"
-                name="zipcode"
-                placeholder='Zip Code'
-                value={formValues.zipcode}
-                required
-              />
-            </div>
-            <div className="input-wrapper">
-             
-              <input
-                onChange={handleChange}
-                type="text"
-                name="image"
-                placeholder='Add Picture'
-                value={formValues.image}
-                required
-              />
-            </div>
-            <div className="input-wrapper">
-             
-             <input
-               onChange={handleChange}
-               type="text"
-               name="bio"
-               placeholder='Short bio'
-               value={formValues.bio}
-               required
-             />
-           </div>
-            <div className="input-wrapper">
-              <label htmlFor="userType">Owner</label>
-              <input
-                onChange={handleChange}
-                type="radio"
-                name="userType"
-                value='Owner'
-                required
-              />
-              <label htmlFor="userType">Walker</label>
-              <input
-                onChange={handleChange}
-                type="radio"
-                name="userType"
-                value='Walker'
-                required
-              />
-            </div>
-            <button
-              disabled={
-                !formValues.email ||
-                (!formValues.password &&
-                  formValues.confirmPassword === formValues.password)
-              }
-            >
-              Sign Up
-            </button>
-          </form>
         </div>
-      </div>
     )
+
+
+
 }
 
 export default SignUp
