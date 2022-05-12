@@ -2,12 +2,12 @@ import React, { useState, useEffect}  from 'react'
 import { DataContext } from './components/DataContext'
 import { Route, Routes } from 'react-router-dom'
 import { CheckSession } from './services/Auth'
-import './App.css';
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
-import Home from './pages/Home';
-import Home2 from './pages/Home2';
-import Nav from './components/Nav';
+import Header from './components/Header'
+import Home from './pages/Home'
+
+
 
 
 
@@ -24,11 +24,12 @@ const App = () => {
     
   }
 
-  const handleLogOut = () => {
+  const handleLogOut = (e) => {
     //Reset all auth related state and clear localStorage
+    e.preventDefault()
     setUser(null)
     toggleAuthenticated(false)
-   
+    localStorage.clear()
   }
 
   useEffect(() => {
@@ -37,11 +38,7 @@ const App = () => {
     if (token) {
       checkToken()
     }
-    console.log(user)
   }, [])
-
-
-
 
   return (
     <div className="App">
@@ -53,14 +50,13 @@ const App = () => {
         handleLogOut
       }}>
       
-        <Nav />
+       <Header />
         <main>
-          
         <Routes>
           <Route path='/' element={ <Home /> } />
           <Route path='signup' element={ <SignUp /> } />
           <Route path='login' element={ <Login /> } />
-          <Route path='home2' element={ <Home2/> } />
+    
 
           
         </Routes>

@@ -6,7 +6,7 @@ const Home = () => {
 const { user, authenticated } = useContext( DataContext )
 
     return (user && authenticated)? (
-        <div>home</div>
+        <div>{user.userType}</div>
     ) : (
         <div>no home</div>
     )

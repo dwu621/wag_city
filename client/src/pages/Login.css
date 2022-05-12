@@ -1,0 +1,31 @@
+body, html {
+    height: 100%;
+}
+
+.bg {
+    background-image: url('../assets/dog_city_street_sit_51245_1920x1080.jpeg');
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+.form-wrapper {
+    padding-top: 7%;
+}
+.login-form {
+    background-color: white;
+    width: 400px;
+    margin: 0 auto;
+    padding: 3%;
+}
+
+Form {
+    margin-top: 50px;
+}
+
+@media (max-width: 1024px) {
+    .login-form {
+        width: auto;
+    }
+    
+}
