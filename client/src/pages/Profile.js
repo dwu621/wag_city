@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { DataContext } from "../components/DataContext"
 import { UpdateUser, GetUserInfo, DeleteUser } from '../services/UserServices'
 import Form from 'react-bootstrap/Form'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import Stack from 'react-bootstrap/Stack'
 import Button from 'react-bootstrap/Button'
 import './Login.css'
 
@@ -25,7 +25,8 @@ const Profile = () => {
 
     const handleSubmit = async (e, id) => {
         e.preventDefault()
-        await UpdateUser(formValues, id)
+        const updatedUser = await UpdateUser(formValues, id)
+        setFormValues(updatedUser)
     }
  
     const handleDelete = async (e, id) => {
@@ -109,19 +110,18 @@ const Profile = () => {
                             defaultValue={formValues.bio}
                             />
                         </Form.Group>
+               
+                        <Stack gap={2} className="col-md mx-auto">
+                            <Button variant="primary"
+                              type="submit"
+                              >Save changes</Button>
+                            <Button 
+                              variant="outline-primary"
+                              onClick={(e)=>{handleDelete(e, user.id)}}
+                            >Delete Profile</Button>
+                        </Stack>
 
-                        <ButtonToolbar className='justify-content-between'>
-
-                            <Button
-                            variant="primary" 
-                            type="submit"
-                            >Save</Button>
-                      
-                            <Button
-                            onClick={(e)=>{handleDelete(e, user.id)}}
-                            >Delete</Button>
-    
-                        </ButtonToolbar>
+                        
                         
                     </Form>
                 </div>

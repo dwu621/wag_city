@@ -115,18 +115,18 @@ const UpdateUser = async (req, res) => {
     try {
         const user_id = parseInt(req.params.user_id)
         const updatedUser = await User.update(req.body, {
-            where: { id: user_id},
+            where: { id: user_id },
             returning: true
         })
         res.send({
-            id: updatedUser.id,
-            firstName: updatedUser.firstName,
-            lastName: updatedUser.lastName,
-            email:updatedUser.email,
-            userType:updatedUser.userType,
-            bio:updatedUser.bio,
-            zipcode:updatedUser.zipcode,
-            image:updatedUser.image
+            id: updatedUser[1][0].id,
+            firstName: updatedUser[1][0].firstName,
+            lastName: updatedUser[1][0].lastName,
+            email:updatedUser[1][0].email,
+            userType:updatedUser[1][0].userType,
+            bio:updatedUser[1][0].bio,
+            zipcode:updatedUser[1][0].zipcode,
+            image:updatedUser[1][0].image
         })
     } catch (error) {
         throw error
