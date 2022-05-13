@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { DataContext } from "../components/DataContext"
-import { UpdateUser, GetUserInfo } from '../services/UserServices'
+import { UpdateUser, GetUserInfo, DeleteUser } from '../services/UserServices'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import './Login.css'
@@ -30,6 +30,7 @@ const Profile = () => {
  
     const handleDelete = async (e, id) => {
         e.preventDefault()
+        await DeleteUser(id)
         console.log('deleted', id)
     }
 
