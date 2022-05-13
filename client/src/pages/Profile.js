@@ -28,6 +28,10 @@ const Profile = () => {
         await UpdateUser(formValues, id)
     }
  
+    const handleDelete = async (e, id) => {
+        e.preventDefault()
+        console.log('deleted', id)
+    }
 
     const handleUserInfo = async (id) => {
         const userInfo = await GetUserInfo(id)
@@ -106,11 +110,17 @@ const Profile = () => {
                         </Form.Group>
 
                       
-                 
-                        <Button
+                        <Form.Group> <Button
                             variant="primary" 
                             type="submit"
-                        >Save</Button>
+                        >Save</Button></Form.Group>
+                       
+                        <Form.Group>
+                        <Button
+                            onClick={(e)=>{handleDelete(e, user.id)}}
+                        >Delete</Button>
+                        </Form.Group>
+                     
                         
                     </Form>
                 </div>
