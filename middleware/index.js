@@ -22,7 +22,6 @@ const hashPassword = async (password) => {
 
   const verifyToken = (req, res, next) => {
     const { token } = res.locals
-    console.log('verify token', res.locals)
     try {
       let payload = jwt.verify(token, APP_SECRET)
       if (payload) {
@@ -40,7 +39,6 @@ const hashPassword = async (password) => {
       const token = req.headers['authorization'].split(' ')[1]
       if (token) {
         res.locals.token = token
-        console.log('strip token', res.locals)
         return next()
       }
     } catch (error) {

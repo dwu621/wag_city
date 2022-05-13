@@ -65,7 +65,6 @@ const UpdatePassword = async (req, res) => {
 
 const CheckSession = async (req, res) => {
     const { payload } = res.locals
-    console.log('pewpew', res.locals)
     res.send(payload)
     
   }
