@@ -25,6 +25,7 @@
 
 #### Sign up and log in as a new user...
 #### Development Progress can be viewed [here](https://trello.com/b/43IDCroR/wagcity)
+[ERD](client/src/assets/wag_city_ERD.png)
 #### Final Project can be viewed [here](insert-link-here)
 ***
 

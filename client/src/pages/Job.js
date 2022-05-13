@@ -33,12 +33,13 @@ const Job = () => {
         handleJobs()
     }, [])
 
-    if (user && user.userType === "Walker" && jobs && authenticated )
+    if (user && user.userType === "Walker" && jobs && authenticated)
     return (
         <div>
             <div>
-                <h2>Your Jobs</h2>
+              
            <Row className="justify-content-center">
+                <h2 style={ {textAlign: 'center'} }>Your Jobs</h2>
                 {jobs.filter((job)=> job.walkerId === user.id && job.isComplete === false).map((job)=>(
                 <JobCard 
                 key={job.id}
@@ -57,8 +58,9 @@ const Job = () => {
              
             </div>
             <div>
-                <h2>Available Jobs</h2>
-
+                
+                <Row className="justify-content-center">
+                <h2 style={ {textAlign: 'center'} } >Available Jobs</h2>
                 {jobs.filter((job)=> !job.isAccepted && job.walkerId !== user.id).map((job)=>(
                 <JobCard 
                 key={job.id}
@@ -72,11 +74,15 @@ const Job = () => {
                 acceptJob= {() => acceptJob(user.id, job.dogId)}
                 />
                  ))}
-      
+                </Row>
             
             </div>
            
         </div>
+    )
+    else if (user && user.userType === "Owner" && jobs && authenticated) 
+    return (
+        <div> owner</div>
     )
 }       
 
