@@ -1,6 +1,6 @@
 import React, { useState, useEffect}  from 'react'
 import { DataContext } from './components/DataContext'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import { CheckSession } from './services/Auth'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
@@ -14,6 +14,7 @@ import Profile from './pages/Profile'
 const App = () => {
   const [authenticated, toggleAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
+  const navigate = useNavigate()
   
   const checkToken = async () => {
     //If a token exists, sends token to localStorage to persist logged in user
@@ -22,12 +23,12 @@ const App = () => {
     toggleAuthenticated(true)
   }
 
-  const handleLogOut = (e) => {
+  const handleLogOut = () => {
     //Reset all auth related state and clear localStorage
-    e.preventDefault()
     setUser(null)
     toggleAuthenticated(false)
     localStorage.clear()
+    navigate('/')
   }
 
   useEffect(() => {

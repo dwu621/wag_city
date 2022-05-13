@@ -2,13 +2,14 @@ import { useContext, useEffect, useState } from 'react'
 import { DataContext } from "../components/DataContext"
 import { UpdateUser, GetUserInfo, DeleteUser } from '../services/UserServices'
 import Form from 'react-bootstrap/Form'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import Button from 'react-bootstrap/Button'
 import './Login.css'
 
 
 const Profile = () => {
-    const { user, authenticated } = useContext( DataContext )
-    
+    const { user, authenticated, handleLogOut } = useContext( DataContext )
+
     const [formValues, setFormValues] = useState({
         firstName: '',
         lastName: '',
@@ -17,7 +18,6 @@ const Profile = () => {
         zipcode: '',
         image: '',
     })
-  
     
     const handleChange = (e) => {
         setFormValues({ ...formValues, [e.target.name]: e.target.value })
@@ -31,7 +31,7 @@ const Profile = () => {
     const handleDelete = async (e, id) => {
         e.preventDefault()
         await DeleteUser(id)
-        console.log('deleted', id)
+        await handleLogOut()
     }
 
     const handleUserInfo = async (id) => {
@@ -110,18 +110,18 @@ const Profile = () => {
                             />
                         </Form.Group>
 
-                      
-                        <Form.Group> <Button
+                        <ButtonToolbar className='justify-content-between'>
+
+                            <Button
                             variant="primary" 
                             type="submit"
-                        >Save</Button></Form.Group>
-                       
-                        <Form.Group>
-                        <Button
+                            >Save</Button>
+                      
+                            <Button
                             onClick={(e)=>{handleDelete(e, user.id)}}
-                        >Delete</Button>
-                        </Form.Group>
-                     
+                            >Delete</Button>
+    
+                        </ButtonToolbar>
                         
                     </Form>
                 </div>
