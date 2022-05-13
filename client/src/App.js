@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp'
 import Header from './components/Header'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
+import Job from './pages/Job'
 
 
 
@@ -56,8 +57,7 @@ const App = () => {
           <Route path='signup' element={ <SignUp /> } />
           <Route path='login' element={ <Login /> } />
           <Route path='profile' element={ <Profile /> } />
-
-          
+          <Route path='jobs' element={ <Job />} />
         </Routes>
         </main>
 

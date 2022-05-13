@@ -59,7 +59,7 @@ const GetJobDetails = async (req, res) => {
     }
 }
 
-const UpdateJob = async (res, req) => {
+const UpdateJob = async (req, res) => {
     try {
         const job_id = parseInt(req.params.job_id)
         const updatedJob = await Job.update(req.body, {
