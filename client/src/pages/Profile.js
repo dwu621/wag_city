@@ -25,8 +25,8 @@ const Profile = () => {
 
     const handleSubmit = async (e, id) => {
         e.preventDefault()
-        const updatedUser = await UpdateUser(formValues, id)
-        setFormValues(updatedUser)
+        await UpdateUser(formValues, id)
+        await handleLogOut()
     }
  
     const handleDelete = async (e, id) => {
