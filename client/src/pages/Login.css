@@ -20,7 +20,7 @@ body, html {
 }
 
 Form {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 @media (max-width: 1024px) {

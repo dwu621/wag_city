@@ -31,6 +31,7 @@ const Login = () => {
         <div className="form-wrapper">
           <div className="login-form">
             <Form onSubmit={handleSubmit}>
+              <h2>Log in</h2>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" name="email" placeholder="Enter email" onChange={handleChange} />

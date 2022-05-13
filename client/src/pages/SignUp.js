@@ -50,6 +50,7 @@ const SignUp = () => {
             <div className="form-wrapper">
                  <div className="login-form">
                     <Form onSubmit={handleSubmit}>
+                        <h2>Register</h2>
                         <Form.Group className="mb-3" controlId="firstName">
                             <Form.Control type="text" name="firstName" placeholder="First Name" onChange={handleChange} />
                         </Form.Group>

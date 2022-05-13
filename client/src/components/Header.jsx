@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { DataContext } from './DataContext'
 import Nav from 'react-bootstrap/Nav'
@@ -14,8 +13,9 @@ const Header = () => {
         authenticatedOptions = (
          
                 <Nav className="ms-auto">
+                 
                     <Nav.Link href='profile'>{user.firstName}</Nav.Link>
-                    <Nav.Link href='/'>Home</Nav.Link>
+                    {/* <NavLink href='/'>Home</NavLink> */}
                     <Nav.Link href={`dogs`}>Dogs</Nav.Link>
                     <Nav.Link href={`jobs`}>Jobs </Nav.Link>
                     <Nav.Link href='/' onClick={handleLogOut}>Signout</Nav.Link>
@@ -27,7 +27,7 @@ const Header = () => {
          
             <Nav className="ms-auto">
                 <Nav.Link href='profile'>{user.firstName}</Nav.Link>
-                <Nav.Link href='/'>Home</Nav.Link>
+                {/* <Nav.Link href='/'>Home</Nav.Link> */}
                 <Nav.Link href={`jobs`}>Jobs </Nav.Link>
                 <Nav.Link href='/' onClick={handleLogOut}>Signout</Nav.Link>
             </Nav>

@@ -9,6 +9,25 @@ const GetAllUsers = async (req, res) => {
     }
 }
 
+const GetUser = async (req, res) => {
+    try {
+        const user_id = parseInt(req.params.user_id)
+        const user = await User.findByPk(user_id)
+        res.send({
+                id: user.id,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                userType: user.userType,
+                bio: user.bio,
+                zipcode: user.zipcode,
+                image: user.image
+        })
+    } catch (error) {
+        error
+    }
+}
+
 const GetOwners = async (req, res) => {
     try {
         const owners = await User.findAll({
@@ -99,7 +118,16 @@ const UpdateUser = async (req, res) => {
             where: { id: user_id},
             returning: true
         })
-        res.send(updatedUser)
+        res.send({
+            id: updatedUser.id,
+            firstName: updatedUser.firstName,
+            lastName: updatedUser.lastName,
+            email:updatedUser.email,
+            userType:updatedUser.userType,
+            bio:updatedUser.bio,
+            zipcode:updatedUser.zipcode,
+            image:updatedUser.image
+        })
     } catch (error) {
         throw error
     }
@@ -119,10 +147,12 @@ const DeleteUser = async (req, res) => {
 
 module.exports = {
     GetAllUsers,
+    GetUser,
     GetOwners,
     GetWalkers,
     GetOwnerDetails,
     GetWalkerDetails,
     UpdateUser,
-    DeleteUser
+    DeleteUser,
+    
 }

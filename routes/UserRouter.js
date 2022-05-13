@@ -7,6 +7,11 @@ middleware.stripToken,
 middleware.verifyToken,
 controller.GetAllUsers)
 
+Router.get('/:user_id', 
+middleware.stripToken,
+middleware.verifyToken,
+controller.GetUser)
+
 Router.get('/owner', 
 middleware.stripToken,
 middleware.verifyToken,
