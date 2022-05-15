@@ -57,6 +57,12 @@ const Login = () => {
                 <Form.Text style={{textAlign:'right'}}muted>
                 </Form.Text>
               </Form.Group>
+              <br></br>
+              <Form.Group>
+                <Form.Text>
+                  Don't have an account? <a href="./signup">Register</a>
+                  </Form.Text>
+              </Form.Group>
               
             </Form>
           </div>
