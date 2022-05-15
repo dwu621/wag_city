@@ -26,3 +26,12 @@ export const DeleteUser = async (id) => {
         throw error
     }
 }
+
+export const GetOwnerDetails = async (id) => {
+    try {
+        const res = await Client.get(`api/user/owner${id}`)
+        console.log(res)
+    } catch (error) {
+        throw error
+    }
+}
