@@ -35,7 +35,8 @@ const Dog = () => {
     
     const handleSubmit = async (e,) => {
         e.preventDefault()
-        console.log(`adding dog for`)
+        console.log('adding dog', formValues)
+
     }
 
     const handleChange = async (e) => {
