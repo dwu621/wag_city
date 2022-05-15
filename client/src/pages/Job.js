@@ -120,7 +120,7 @@ const Job = () => {
                 <Card key={job.id} style={{ width: '18rem' }} >
                 <Card.Img variant="top" src={job.dog.image}  />
                 <Card.Header >
-                    <Card.Title>{job.dogName}</Card.Title>
+                    <Card.Title>{job.dog.name}</Card.Title>
                 </Card.Header>
                 <Card.Body>
                     <Card.Title>{job.title}</Card.Title>

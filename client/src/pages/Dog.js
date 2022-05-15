@@ -105,7 +105,13 @@ const Dog = () => {
                         <Form.Control type="text" name="image" placeholder="Picture" onChange={handleChange} />
                     </Form.Group>
 
-                    <Button type="submit" onClick={() => handleClick()} >Add Dog</Button>
+                    <Button disabled={
+                        !formValues.name || 
+                        !formValues.gender || 
+                        !formValues.breed ||
+                        !formValues.weight ||
+                        !formValues.image ||
+                        !formValues.ownerId} type="submit" onClick={() => handleClick()} >Add Dog</Button>
                      <>     </>   
                     
                     <Button onClick={() => handleClick()} variant="outline-primary">Cancel</Button>
