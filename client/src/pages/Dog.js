@@ -9,13 +9,13 @@ const Dog = () => {
     
     const navigate = useNavigate()
     
-    const getOwnerInfo = async (id) => {
+    const handleOwnerInfo = async (id) => {
         console.log(`getting info for ${id}`)
     }
 
     useEffect(() => {
         if(user) {
-            getOwnerInfo(user.id)
+            handleOwnerInfo(user.id)
         }
     }, [user])
 
