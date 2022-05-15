@@ -110,6 +110,12 @@ const SignUp = () => {
                             type="submit"
                             disabled={
                                 !formValues.email ||
+                                !formValues.firstName ||
+                                !formValues.lastName ||
+                                !formValues.zipcode ||
+                                !formValues.image ||
+                                !formValues.bio ||
+                                !formValues.userType ||
                                 (!formValues.password &&
                                   formValues.confirmPassword === formValues.password)
                               }

@@ -56,7 +56,7 @@ const Dog = () => {
             handleOwnerInfo(user.id)
             setFormValues({...formValues, ownerId: user.id})
         }
-    }, [user, clicked])
+    }, [user, clicked, formValues])
 
     return (user && user.userType === "Walker") ? (
         <div>{navigate("../jobs")}</div>
@@ -137,14 +137,12 @@ const Dog = () => {
                             Add Dog
                     </Button>
                      <>     </>   
-                    
                     <Button 
                     onClick={() => handleClick()} 
                     variant="outline-primary">
                         Cancel
                     </Button>
                 </Form>                
-       
             </Container>
         </div>
         
