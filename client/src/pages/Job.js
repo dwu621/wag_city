@@ -126,6 +126,8 @@ const Job = () => {
                     <Card.Title>{job.title}</Card.Title>
                     <Card.Text>{job.description}</Card.Text>
                     <Card.Text>{job.walkDuration} minutes</Card.Text>
+                    <Card.Text hidden={!job.isAccepted || job.isComplete}>Accepted by <Link to={`/walker/details/${job.accepted_by.id}`}>{job.accepted_by.firstName} {job.accepted_by.lastName.charAt(0)}.</Link></Card.Text>
+                    <Card.Text hidden={!job.isComplete}>Completed by <Link to={`/walker/details/${job.accepted_by.id}`}>{job.accepted_by.firstName} {job.accepted_by.lastName.charAt(0)}.</Link></Card.Text>
                 </Card.Body>    
                 </Card>
                 ))}
