@@ -4,6 +4,8 @@ import { GetAllJobs, UpdateAcceptJob, UpdateJobComplete } from "../services/JobS
 import JobCard from "../components/JobCard"
 import Row from 'react-bootstrap/Row'
 import Container from "react-bootstrap/esm/Container"
+import Card from "react-bootstrap/Card"
+import { Link } from "react-router-dom"
 
 const Job = () => {
     const { user, authenticated } = useContext( DataContext )
@@ -109,7 +111,29 @@ const Job = () => {
     )
     else if (user && user.userType === "Owner" && jobs && authenticated) 
     return (
-        <Container> owner</Container>
+        <div>
+            <Container>
+            <Row className="justify-content-center">
+                {jobs.filter((job)=> job.ownerId === user.id).length > 0 ? <h2 style={ {textAlign: 'center'} }>Your Jobs</h2> : <h2 style={ {textAlign: 'center'} }>No Jobs to display</h2>}
+                   
+                {jobs.filter((job)=> job.ownerId === user.id).map((job)=>(
+                <Card key={job.id} style={{ width: '18rem' }} >
+                <Card.Img variant="top" src={job.dog.image}  />
+                <Card.Header >
+                    <Card.Title>{job.dogName}</Card.Title>
+                </Card.Header>
+                <Card.Body>
+                    <Card.Title>{job.title}</Card.Title>
+                    <Card.Text>{job.description}</Card.Text>
+                    <Card.Text>{job.walkDuration} minutes</Card.Text>
+                </Card.Body>    
+                </Card>
+                ))}
+                   
+                </Row>
+        </Container>
+        </div>
+        
     )
 }       
 
