@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button'
 import './Login.css'
 import FormGroup from "react-bootstrap/esm/FormGroup"
 import FormText from "react-bootstrap/esm/FormText"
-import { Link } from "react-router-dom"
 
 const SignUp = () => {
     const navigate = useNavigate()
