@@ -13,6 +13,14 @@ const Dog = () => {
     const { user, authenticated } = useContext( DataContext )
     const [ownerDogs, setOwnerDogs] = useState()
     const [clicked, setClicked] = useState(false)
+    const [formValues, setFormValues] = useState({
+        name: "",
+        gender: "",
+        weight: "",
+        breed: "",
+        image: "",
+        ownerId: ""
+    })
     
     const navigate = useNavigate()
     
@@ -25,16 +33,19 @@ const Dog = () => {
         setClicked(!clicked)
     }
     
-    const handleAddDog = async (e, id) => {
+    const handleSubmit = async (e,) => {
         e.preventDefault()
-        console.log(`adding dog for owner ${id}`)
+        console.log(`adding dog for`)
     }
 
-    console.log(clicked)
-
+    const handleChange = async (e) => {
+        setFormValues({ ...formValues, [e.target.name]: e.target.value })
+    }
+    console.log(formValues)
     useEffect(() => {
         if(user) {
             handleOwnerInfo(user.id)
+            setFormValues({...formValues, ownerId: user.id})
         }
     }, [user])
 
@@ -60,13 +71,35 @@ const Dog = () => {
              </Container>
 
             <Container hidden={!clicked}>
-                <Form onSubmit={(e) => handleAddDog(e, user.id)}>
-                
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group>
+                        <Form.Label>Tell us about your new dog</Form.Label>
+                    </Form.Group>
 
+                    <Form.Group className="mb-3" controlId="name">
+                        <Form.Control type="text" name="name" placeholder="Name" onChange={handleChange} />
+                    </Form.Group>
 
-                <Button type="submit" onClick={() => handleClick()} >Add Dog</Button>
-                 <>     </>   
-                 <Button onClick={() => handleClick()} variant="outline-primary">Cancel</Button>
+                    <Form.Group className="mb-3" controlId="breed">
+                        <Form.Control type="text" name="breed" placeholder="Breed" onChange={handleChange} />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="gender">
+                        <Form.Control type="text" name="gender" placeholder="Gender" onChange={handleChange} />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="weight">
+                        <Form.Control type="text" name="weight" placeholder="Weight(lbs)" onChange={handleChange} />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="image">
+                        <Form.Control type="text" name="image" placeholder="Picture" onChange={handleChange} />
+                    </Form.Group>
+
+                    <Button type="submit" onClick={() => handleClick()} >Add Dog</Button>
+                     <>     </>   
+                    
+                    <Button onClick={() => handleClick()} variant="outline-primary">Cancel</Button>
                 </Form>                
        
             </Container>
