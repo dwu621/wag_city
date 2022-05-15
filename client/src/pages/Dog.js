@@ -1,18 +1,18 @@
 import { DataContext } from "../components/DataContext";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { GetOwnerDetails } from "../services/UserServices";
+import { GetOwnerDogs } from "../services/UserServices";
 
 
 const Dog = () => {
     const { user, authenticated } = useContext( DataContext )
-    const { ownerInfo, setOwnerInfo } = useState(null)
+    const { ownerDogs, setOwnerDogs } = useState(null)
     
     const navigate = useNavigate()
     
     const handleOwnerInfo = async (id) => {
-        await GetOwnerDetails(id)
-        console.log(`getting info for ${id}`)
+        const dogs = await GetOwnerDogs(id)
+        console.log(dogs)
     }
 
     useEffect(() => {
