@@ -39,7 +39,8 @@ const Job = () => {
             <div>
               
                 <Row className="justify-content-center">
-                    <h2 style={ {textAlign: 'center'} }>Your Jobs</h2>
+                    {jobs.filter((job)=> job.walkerId === user.id && job.isComplete === false).length > 0 &&  <h2 style={ {textAlign: 'center'} }>Your Jobs</h2>}
+                   
                     {jobs.filter((job)=> job.walkerId === user.id && job.isComplete === false).map((job)=>(
                     <JobCard 
                     key={job.id}
@@ -55,13 +56,14 @@ const Job = () => {
                     completeJob={() => completeJob(job.id)} 
                     />
                     ))}
+                   
                 </Row>
              
             </div>
             <div>
                 
                 <Row className="justify-content-center">
-                <h2 style={ {textAlign: 'center'} } >Available Jobs</h2>
+                {jobs.filter((job)=> !job.isAccepted && job.walkerId !== user.id).length > 0 && <h2 style={ {textAlign: 'center'} } >Available Jobs</h2>}
                 {jobs.filter((job)=> !job.isAccepted && job.walkerId !== user.id).map((job)=>(
                 <JobCard 
                 key={job.id}
@@ -82,7 +84,8 @@ const Job = () => {
             <div>
               
               <Row className="justify-content-center">
-                  <h2 style={ {textAlign: 'center'} }>Completed Jobs</h2>
+                  {jobs.filter((job)=> job.walkerId === user.id && job.isComplete === true).length > 0 && 
+                  <h2 style={ {textAlign: 'center'} }>Completed Jobs</h2>}
                   {jobs.filter((job)=> job.walkerId === user.id && job.isComplete === true).map((job)=>(
                   <JobCard 
                   key={job.id}

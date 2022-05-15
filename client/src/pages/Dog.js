@@ -3,8 +3,8 @@ import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GetOwnerDogs } from "../services/UserServices";
 import Container from "react-bootstrap/esm/Container";
-import Card from "react-bootstrap/Card"
-import Form from "react-bootstrap/Form"
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
 import { AddDog } from "../services/DogServices";
