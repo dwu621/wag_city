@@ -8,6 +8,7 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
 import Job from './pages/Job'
+import Dog from './pages/Dog'
 
 
 
@@ -58,6 +59,7 @@ const App = () => {
           <Route path='login' element={ <Login /> } />
           <Route path='profile' element={ <Profile /> } />
           <Route path='jobs' element={ <Job />} />
+          <Route path="dogs" element={ <Dog />} />
         </Routes>
         </main>
 
