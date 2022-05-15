@@ -44,13 +44,20 @@ const Login = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" name='password' placeholder="Password" onChange={handleChange}/>
               </Form.Group>
-              <Button 
-                variant="primary" 
-                type="submit"
-                disabled={!formValues.email || !formValues.password}
-                >
-                Submit
-              </Button>
+              <Form.Group>
+                <Button 
+                  variant="primary" 
+                  type="submit"
+                  disabled={!formValues.email || !formValues.password}
+                  >
+                  Submit
+                </Button>
+              </Form.Group>
+              <Form.Group>
+                <Form.Text style={{textAlign:'right'}}muted>
+                </Form.Text>
+              </Form.Group>
+              
             </Form>
           </div>
         </div>
