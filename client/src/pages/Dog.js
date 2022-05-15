@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card"
 import Form from "react-bootstrap/Form"
 import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/esm/Button";
+import { AddDog } from "../services/DogServices";
 
 
 const Dog = () => {
@@ -35,8 +36,15 @@ const Dog = () => {
     
     const handleSubmit = async (e,) => {
         e.preventDefault()
-        console.log('adding dog', formValues)
-
+        await AddDog(formValues)
+        setFormValues({
+            name: "",
+            gender: "",
+            weight: "",
+            breed: "",
+            image: "",
+            ownerId: ""
+        })
     }
 
     const handleChange = async (e) => {
@@ -48,7 +56,7 @@ const Dog = () => {
             handleOwnerInfo(user.id)
             setFormValues({...formValues, ownerId: user.id})
         }
-    }, [user])
+    }, [user, clicked])
 
     return (user && user.userType === "Walker") ? (
         <div>{navigate("../jobs")}</div>
