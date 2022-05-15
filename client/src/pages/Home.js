@@ -25,8 +25,8 @@ const Home = () => {
                     <Button className="navigate-button" onClick={() => {navigate("/signup")}}>Get Started</Button>
 
                 </Col>
-                <Col>
-                    <img className="dog" src="https://placedog.net/640?id=220" alt="dog"></img>
+                <Col className="lg-6">
+                    <img src="https://placedog.net/640?id=220" alt="dog"></img>
                 </Col>
             </Row>
         </Container>
