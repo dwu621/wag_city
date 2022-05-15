@@ -13,11 +13,9 @@ const Header = () => {
         authenticatedOptions = (
          
                 <Nav className="ms-auto">
-                 
                     <Nav.Link href='profile'>{user.firstName}</Nav.Link>
-                    {/* <NavLink href='/'>Home</NavLink> */}
-                    <Nav.Link href={`dogs`}>Dogs</Nav.Link>
-                    <Nav.Link href={`jobs`}>Jobs </Nav.Link>
+                    <Nav.Link href='dogs'>Dogs</Nav.Link>
+                    <Nav.Link href='jobs'>Jobs </Nav.Link>
                     <Nav.Link href='/' onClick={handleLogOut}>Signout</Nav.Link>
                 </Nav>
   
@@ -27,7 +25,6 @@ const Header = () => {
          
             <Nav className="ms-auto">
                 <Nav.Link href='profile'>{user.firstName}</Nav.Link>
-                {/* <Nav.Link href='/'>Home</Nav.Link> */}
                 <Nav.Link href={`jobs`}>Jobs </Nav.Link>
                 <Nav.Link href='/' onClick={handleLogOut}>Signout</Nav.Link>
             </Nav>

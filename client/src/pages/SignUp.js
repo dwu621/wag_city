@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import './Login.css'
+import FormGroup from "react-bootstrap/esm/FormGroup"
+import FormText from "react-bootstrap/esm/FormText"
+import { Link } from "react-router-dom"
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -112,7 +115,13 @@ const SignUp = () => {
                                   formValues.confirmPassword === formValues.password)
                               }
                         >Sign Up</Button>
-                        
+                         <br/>       
+                         <br/> 
+                        <FormGroup>
+                            <FormText>
+                                Already have an account? <a href="./login">Log In</a>
+                            </FormText>
+                        </FormGroup>
                     </Form>
                 </div>
             </div>
