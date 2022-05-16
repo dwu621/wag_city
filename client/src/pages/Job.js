@@ -15,6 +15,15 @@ const Job = () => {
     const [ jobs, setJobs ] = useState([])
     const [ ownerDogs, setOwnerDogs ] = useState()
     const [ clicked, setClicked ] = useState(false)
+    const [ formValues, setFormValues ] = useState({
+        title: "",
+        description: "",
+        walkDuration: "",
+        isAccepted: false,
+        isComplete: false,
+        ownerId: "",
+        dogId: ""
+    })
 
     const handleJobs = async () => {
         const data = await GetAllJobs()
@@ -47,6 +56,11 @@ const Job = () => {
         setOwnerDogs(dogs)
     }
 
+    const handleChange = async (e) => {
+        console.log(e.target.name ,e.target.value)
+        setFormValues({ ...formValues, [e.target.name]: e.target.value })
+    }
+
     useEffect(() => {
         handleJobs()
         if(user && user.userType === "Owner") {
@@ -54,7 +68,7 @@ const Job = () => {
         }
     }, [user])
 
-    console.log(ownerDogs)
+    console.log(formValues)
 
     if (user && user.userType === "Walker" && jobs && authenticated)
     return (
@@ -130,13 +144,49 @@ const Job = () => {
            
         </div>
     )
-    else if (user && user.userType === "Owner" && jobs && authenticated) 
+    else if (user && user.userType === "Owner" && jobs && authenticated && ownerDogs) 
     return (
         <div>
             
             <Container hidden={!clicked}>
-                POST NEW JOB
                 <Form>
+
+                <Form.Group>
+                        <Form.Label>New Job</Form.Label>
+                </Form.Group>
+                
+                <Form.Group className="mb-3" controlId="name">
+                    <Form.Select name="dogId" onChange={handleChange} >
+                        {
+                        ownerDogs.map((dog)=>(
+                            <option 
+                            key={dog.id}
+                            value={dog.id}
+                            >
+                                {dog.name}
+                            </option>
+                        ))
+                        }
+                        
+                    </Form.Select>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="name">
+                    <Form.Control 
+                        type="text" name="name" 
+                        placeholder="Name" 
+                        onChange={handleChange} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="name">
+                    <Form.Control 
+                        type="text" name="name" 
+                        placeholder="Name" 
+                        onChange={handleChange} />
+                </Form.Group>
+                
+                
+                
                 <Button onClick={handleClick}>Post Job</Button>
                 </Form>
            
