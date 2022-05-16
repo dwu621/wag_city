@@ -61,6 +61,11 @@ const Job = () => {
         setFormValues({ ...formValues, [e.target.name]: e.target.value })
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log("post jobs",formValues)
+    }
+
     useEffect(() => {
         handleJobs()
         if(user && user.userType === "Owner") {
@@ -149,10 +154,10 @@ const Job = () => {
         <div>
             
             <Container hidden={!clicked}>
-                <Form>
+                <Form onSubmit={handleSubmit}>
 
                 <Form.Group>
-                        <Form.Label>New Job</Form.Label>
+                    <Form.Label>New Job</Form.Label>
                 </Form.Group>
                 
                 <Form.Group className="mb-3" controlId="dogId">
@@ -199,6 +204,7 @@ const Job = () => {
                         !formValues.walkDuration ||
                         !formValues.dogId
                     }
+                    type="submit"
                     onClick={handleClick}>
                     Post Job
                     </Button>
@@ -214,11 +220,11 @@ const Job = () => {
 
            
             <Container hidden={clicked}>
-            
+            <Button onClick={handleClick} hidden={clicked}>New Job</Button>
             <Row className="justify-content-center">
                
                 {jobs.filter((job)=> job.ownerId === user.id).length > 0 ? <h2 style={ {textAlign: 'center'} }>Your Jobs</h2> : <h2 style={ {textAlign: 'center'} }>No Jobs to display</h2>}
-                <Button onClick={handleClick} hidden={clicked}>New Job</Button>
+           
                 {jobs.filter((job)=> job.ownerId === user.id).map((job)=>(
                 <Card key={job.id} style={{ width: '18rem' }} >
                 <Card.Img variant="top" src={job.dog.image}  />

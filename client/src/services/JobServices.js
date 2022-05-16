@@ -26,3 +26,12 @@ export const UpdateJobComplete = async (jobId) => {
         throw error
     }
 }
+
+export const NewJob = async (data) => {
+    try {
+        const res = await Client.put(`/api/job`, data)
+        console.log(res)
+    } catch (error) {
+        throw error
+    }
+}
