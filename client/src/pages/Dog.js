@@ -70,6 +70,30 @@ const Dog = () => {
                     ownerDogs.map((dog)=>(
                         <Card key={dog.id} style={{ width: '18rem' }}>
                             <Card.Img src={dog.image} />
+                            <Card.Header>
+                                <Card.Title>
+                                    {dog.name}
+                                </Card.Title>
+                            </Card.Header>
+                            <Card.Body>
+                                
+                                <Card.Text>
+                                    Breed: {dog.breed}
+                                </Card.Text>
+
+                                <Card.Text>
+                                    Gender: {dog.gender}
+                                </Card.Text>
+                                
+                                <Card.Text>
+                                    Weight: {dog.weight} lbs
+                                </Card.Text>
+                            
+                            </Card.Body>
+                        
+                        
+                        
+                        
                         </Card>
                     ))
                 }
