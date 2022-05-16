@@ -50,13 +50,14 @@ const Dog = () => {
     const handleChange = async (e) => {
         setFormValues({ ...formValues, [e.target.name]: e.target.value })
     }
-    console.log(formValues)
+    
     useEffect(() => {
         if(user) {
             handleOwnerInfo(user.id)
             setFormValues({...formValues, ownerId: user.id})
         }
-    }, [user, clicked, formValues])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user, clicked])
 
     return (user && user.userType === "Walker") ? (
         <div>{navigate("../jobs")}</div>

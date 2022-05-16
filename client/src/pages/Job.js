@@ -1,15 +1,20 @@
 import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../components/DataContext"
 import { GetAllJobs, UpdateAcceptJob, UpdateJobComplete } from "../services/JobServices"
+import { GetOwnerDogs } from "../services/UserServices"
 import JobCard from "../components/JobCard"
 import Row from 'react-bootstrap/Row'
 import Container from "react-bootstrap/esm/Container"
 import Card from "react-bootstrap/Card"
 import { Link } from "react-router-dom"
+import Button from "react-bootstrap/esm/Button"
+import Form from "react-bootstrap/Form"
 
 const Job = () => {
     const { user, authenticated } = useContext( DataContext )
     const [ jobs, setJobs ] = useState([])
+    const [ ownerDogs, setOwnerDogs ] = useState()
+    const [ clicked, setClicked ] = useState(false)
 
     const handleJobs = async () => {
         const data = await GetAllJobs()
@@ -31,9 +36,25 @@ const Job = () => {
 
     }
 
+    const handleClick = () => {
+        setClicked(!clicked)
+        console.log("clicked")
+
+    }
+
+    const handleDogs = async (id) => {
+        const dogs = await GetOwnerDogs(id)
+        setOwnerDogs(dogs)
+    }
+
     useEffect(() => {
         handleJobs()
-    }, [])
+        if(user && user.userType === "Owner") {
+            handleDogs(user.id)
+        }
+    }, [user])
+
+    console.log(ownerDogs)
 
     if (user && user.userType === "Walker" && jobs && authenticated)
     return (
@@ -112,10 +133,22 @@ const Job = () => {
     else if (user && user.userType === "Owner" && jobs && authenticated) 
     return (
         <div>
-            <Container>
+            
+            <Container hidden={!clicked}>
+                POST NEW JOB
+                <Form>
+                <Button onClick={handleClick}>Post Job</Button>
+                </Form>
+           
+            </Container>
+
+           
+            <Container hidden={clicked}>
+            
             <Row className="justify-content-center">
+               
                 {jobs.filter((job)=> job.ownerId === user.id).length > 0 ? <h2 style={ {textAlign: 'center'} }>Your Jobs</h2> : <h2 style={ {textAlign: 'center'} }>No Jobs to display</h2>}
-                   
+                <Button onClick={handleClick} hidden={clicked}>New Job</Button>
                 {jobs.filter((job)=> job.ownerId === user.id).map((job)=>(
                 <Card key={job.id} style={{ width: '18rem' }} >
                 <Card.Img variant="top" src={job.dog.image}  />
@@ -131,8 +164,8 @@ const Job = () => {
                 </Card.Body>    
                 </Card>
                 ))}
-                   
                 </Row>
+                    
         </Container>
         </div>
         
