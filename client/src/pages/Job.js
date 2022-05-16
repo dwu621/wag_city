@@ -155,7 +155,7 @@ const Job = () => {
                         <Form.Label>New Job</Form.Label>
                 </Form.Group>
                 
-                <Form.Group className="mb-3" controlId="name">
+                <Form.Group className="mb-3" controlId="dogId">
                     <Form.Select name="dogId" onChange={handleChange} >
                         {
                         ownerDogs.map((dog)=>(
@@ -166,27 +166,31 @@ const Job = () => {
                                 {dog.name}
                             </option>
                         ))
-                        }
-                        
+                        }   
                     </Form.Select>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="name">
+                <Form.Group className="mb-3" controlId="title">
                     <Form.Control 
-                        type="text" name="name" 
-                        placeholder="Name" 
+                        type="text" name="title" 
+                        placeholder="Job Title" 
                         onChange={handleChange} />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="name">
+                <Form.Group className="mb-3" controlId="description">
                     <Form.Control 
-                        type="text" name="name" 
-                        placeholder="Name" 
+                        type="text" name="description" 
+                        placeholder="Short Description" 
                         onChange={handleChange} />
                 </Form.Group>
-                
-                
-                
+
+                <Form.Group className="mb-3" controlId="walkDuration">
+                    <Form.Control 
+                        type="text" name="walkDuration" 
+                        placeholder="Walk Time(minutes)" 
+                        onChange={handleChange} />
+                </Form.Group>
+
                 <Button onClick={handleClick}>Post Job</Button>
                 </Form>
            
