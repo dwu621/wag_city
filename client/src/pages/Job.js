@@ -191,7 +191,23 @@ const Job = () => {
                         onChange={handleChange} />
                 </Form.Group>
 
-                <Button onClick={handleClick}>Post Job</Button>
+                <Button 
+                    disabled={
+                        !formValues.description ||
+                        !formValues.title ||
+                        !formValues.description ||
+                        !formValues.walkDuration ||
+                        !formValues.dogId
+                    }
+                    onClick={handleClick}>
+                    Post Job
+                    </Button>
+                <>   </>
+                <Button 
+                    onClick={() => handleClick()} 
+                    variant="outline-primary">
+                    Cancel
+                    </Button>
                 </Form>
            
             </Container>
