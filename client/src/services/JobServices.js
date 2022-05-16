@@ -29,7 +29,7 @@ export const UpdateJobComplete = async (jobId) => {
 
 export const NewJob = async (data) => {
     try {
-        const res = await Client.put(`/api/job`, data)
+        const res = await Client.post(`/api/job`, data)
         console.log(res)
     } catch (error) {
         throw error

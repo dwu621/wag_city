@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../components/DataContext"
-import { GetAllJobs, UpdateAcceptJob, UpdateJobComplete } from "../services/JobServices"
+import { GetAllJobs, UpdateAcceptJob, UpdateJobComplete, NewJob } from "../services/JobServices"
 import { GetOwnerDogs } from "../services/UserServices"
 import JobCard from "../components/JobCard"
 import Row from 'react-bootstrap/Row'
@@ -22,6 +22,7 @@ const Job = () => {
         isAccepted: false,
         isComplete: false,
         ownerId: "",
+        walkerId: 1,
         dogId: ""
     })
 
@@ -64,13 +65,17 @@ const Job = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log("post jobs",formValues)
+        await NewJob(formValues)
+        await handleJobs()
     }
 
     useEffect(() => {
         handleJobs()
         if(user && user.userType === "Owner") {
             handleDogs(user.id)
+            setFormValues({...formValues, ownerId: user.id})
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
     console.log(formValues)
@@ -191,7 +196,7 @@ const Job = () => {
 
                 <Form.Group className="mb-3" controlId="walkDuration">
                     <Form.Control 
-                        type="text" name="walkDuration" 
+                        type="integer" name="walkDuration" 
                         placeholder="Walk Time(minutes)" 
                         onChange={handleChange} />
                 </Form.Group>
@@ -202,7 +207,8 @@ const Job = () => {
                         !formValues.title ||
                         !formValues.description ||
                         !formValues.walkDuration ||
-                        !formValues.dogId
+                        !formValues.dogId ||
+                        !formValues.ownerId
                     }
                     type="submit"
                     onClick={handleClick}>
@@ -235,8 +241,14 @@ const Job = () => {
                     <Card.Title>{job.title}</Card.Title>
                     <Card.Text>{job.description}</Card.Text>
                     <Card.Text>{job.walkDuration} minutes</Card.Text>
+                    
+                    <Card.Text hidden={job.isAccepted || job.isComplete}>Waiting for Walker...</Card.Text>
+
                     <Card.Text hidden={!job.isAccepted || job.isComplete}>Accepted by <Link to={`/walker/details/${job.accepted_by.id}`}>{job.accepted_by.firstName} {job.accepted_by.lastName.charAt(0)}.</Link></Card.Text>
+                    
                     <Card.Text hidden={!job.isComplete}>Completed by <Link to={`/walker/details/${job.accepted_by.id}`}>{job.accepted_by.firstName} {job.accepted_by.lastName.charAt(0)}.</Link></Card.Text>
+
+
                 </Card.Body>    
                 </Card>
                 ))}
