@@ -1,4 +1,5 @@
 import Card from 'react-bootstrap/Card'
+import { Link } from "react-router-dom"
 
 import Button from 'react-bootstrap/esm/Button'
 
@@ -10,7 +11,7 @@ const JobCard = (props) => {
             <Card.Img variant="top" src={props.image}  />
             <Card.Header >
                 <Card.Title>{props.dogName}</Card.Title>
-                <Card.Text muted>posted by: {props.posted_by}</Card.Text>
+                <Card.Text muted>posted by: <Link to={`/owner/details/${props.ownerId}`}>{props.posted_by}</Link></Card.Text>
             </Card.Header>
             <Card.Body>
                 <Card.Title>{props.title}</Card.Title>

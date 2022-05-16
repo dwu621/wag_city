@@ -12,9 +12,9 @@ import { AddDog } from "../services/DogServices";
 
 const Dog = () => {
     const { user, authenticated } = useContext( DataContext )
-    const [ownerDogs, setOwnerDogs] = useState()
-    const [clicked, setClicked] = useState(false)
-    const [formValues, setFormValues] = useState({
+    const [ ownerDogs, setOwnerDogs ] = useState()
+    const [ clicked, setClicked ] = useState(false)
+    const [ formValues, setFormValues ] = useState({
         name: "",
         gender: "",
         weight: "",
@@ -34,9 +34,10 @@ const Dog = () => {
         setClicked(!clicked)
     }
     
-    const handleSubmit = async (e,) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         await AddDog(formValues)
+        handleOwnerInfo(user.id)
         setFormValues({
             name: "",
             gender: "",

@@ -87,7 +87,6 @@ const Job = () => {
               
                 <Row className="justify-content-center">
                     {jobs.filter((job)=> job.walkerId === user.id && job.isComplete === false).length > 0 &&  <h2 style={ {textAlign: 'center'} }>Your Jobs</h2>}
-                   
                     {jobs.filter((job)=> job.walkerId === user.id && job.isComplete === false).map((job)=>(
                     <JobCard 
                     key={job.id}
@@ -98,8 +97,9 @@ const Job = () => {
                     image={job.dog.image}
                     isAccepted={job.isAccepted}
                     isComplete={job.isComplete}
-                    posted_by={job.posted_by.firstName}
-                    acceptJob={() => acceptJob(user.id, job.dogId)}
+                    posted_by={`${job.posted_by.firstName} ${job.posted_by.lastName.charAt(0)}.`}
+                    ownerId={job.posted_by.id}
+                    acceptJob={() => acceptJob(user.id, job.id)}
                     completeJob={() => completeJob(job.id)} 
                     />
                     ))}
@@ -120,8 +120,10 @@ const Job = () => {
                 image={job.dog.image}
                 isAccepted={job.isAccepted}
                 isComplete={job.isComplete}
-                posted_by={job.posted_by.firstName}
-                acceptJob= {() => acceptJob(user.id, job.dogId)}
+                walkDuration={job.walkDuration}
+                posted_by={`${job.posted_by.firstName} ${job.posted_by.lastName.charAt(0)}.`}
+                ownerId={job.posted_by.id}
+                acceptJob= {() => acceptJob(user.id, job.id)}
                 />
                  ))}
                 </Row>
@@ -143,8 +145,9 @@ const Job = () => {
                   image={job.dog.image}
                   isAccepted={job.isAccepted}
                   isComplete={job.isComplete}
-                  posted_by={job.posted_by.firstName}
-                  acceptJob={() => acceptJob(user.id, job.dogId)}
+                  posted_by={`${job.posted_by.firstName} ${job.posted_by.lastName.charAt(0)}.`}
+                  ownerId={job.posted_by.id}
+                  acceptJob={() => acceptJob(user.id, job.id)}
                   completeJob={() => completeJob(job.id)} 
                   />
                   ))}
