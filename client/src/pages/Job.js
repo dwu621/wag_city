@@ -28,27 +28,24 @@ const Job = () => {
 
     const handleJobs = async () => {
         const data = await GetAllJobs()
-        console.log(data)
         setJobs(data)
     }
   
     const acceptJob = async (walkerId, jobId) => {
         await UpdateAcceptJob(walkerId, jobId)
-        console.log('accept job', walkerId, jobId)
         handleJobs()
 
     }
 
     const completeJob = async (jobId) => {
         await UpdateJobComplete(jobId)
-        console.log('markcomplete', jobId)
         handleJobs()
 
     }
 
     const handleClick = () => {
         setClicked(!clicked)
-        console.log("clicked")
+       
 
     }
 
@@ -58,15 +55,23 @@ const Job = () => {
     }
 
     const handleChange = async (e) => {
-        console.log(e.target.name ,e.target.value)
         setFormValues({ ...formValues, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("post jobs",formValues)
         await NewJob(formValues)
         await handleJobs()
+        setFormValues({
+            title: "",
+            description: "",
+            walkDuration: "",
+            isAccepted: false,
+            isComplete: false,
+            ownerId: "",
+            walkerId: 1,
+            dogId: ""
+        })
     }
 
     useEffect(() => {
@@ -77,8 +82,7 @@ const Job = () => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
-
-    console.log(formValues)
+   
 
     if (user && user.userType === "Walker" && jobs && authenticated)
     return (

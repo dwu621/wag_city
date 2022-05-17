@@ -11,8 +11,8 @@ export const GetAllJobs = async () => {
 
 export const UpdateAcceptJob = async (walkerId, jobId) => {
     try {
-        const res  = await Client.put(`/api/job/${jobId}`, { walkerId: walkerId, isAccepted: true })
-       console.log(res)
+        await Client.put(`/api/job/${jobId}`, { walkerId: walkerId, isAccepted: true })
+        
     } catch (error) {
         throw error
     }
@@ -20,8 +20,8 @@ export const UpdateAcceptJob = async (walkerId, jobId) => {
 
 export const UpdateJobComplete = async (jobId) => {
     try {
-        const res = await Client.put(`/api/job/${jobId}`, { isComplete: true })
-        console.log(res)
+      await Client.put(`/api/job/${jobId}`, { isComplete: true })
+      
     } catch (error) {
         throw error
     }
@@ -29,8 +29,8 @@ export const UpdateJobComplete = async (jobId) => {
 
 export const NewJob = async (data) => {
     try {
-        const res = await Client.post(`/api/job`, data)
-        console.log(res)
+        await Client.post(`/api/job`, data)
+   
     } catch (error) {
         throw error
     }
