@@ -9,7 +9,7 @@ import './Login.css'
 
 const Login = () => {
     const { setUser, toggleAuthenticated } = useContext( DataContext )
-    const [formValues, setFormValues] = useState({ email: '', password: '' })
+    const [ formValues, setFormValues ] = useState({ email: '', password: '' })
     
     const navigate = useNavigate()
     
@@ -17,6 +17,8 @@ const Login = () => {
         setFormValues({ ...formValues, [e.target.name]: e.target.value })
     }
     
+    console.log(process.env.NODE_ENV)
+
     const handleSubmit = async (e) => {
       e.preventDefault()
       const payload = await SignInUser(formValues)

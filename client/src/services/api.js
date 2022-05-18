@@ -1,6 +1,12 @@
 import Axios from 'axios'
 
-export const BASE_URL = process.env.NODE_ENV === "production" ? "https://wagcity-backend.herokuapp.com/" : "http://localhost:3001"
+// export const BASE_URL = process.env.NODE_ENV === "local" ? "http://localhost:3001" : "https://wagcity-backend.herokuapp.com/"
+
+// export const BASE_URL = "https://wagcity-backend.herokuapp.com/"
+
+export const BASE_URL = process.env.NODE_ENV === 'production'
+    ? `${window.location.origin}/api`
+    : 'http://localhost:3001/api'
 
 const Client = Axios.create({ baseURL: BASE_URL })
 
