@@ -16,8 +16,6 @@ const Login = () => {
     const handleChange = (e) => {
         setFormValues({ ...formValues, [e.target.name]: e.target.value })
     }
-    
-    console.log(process.env.NODE_ENV)
 
     const handleSubmit = async (e) => {
       e.preventDefault()
