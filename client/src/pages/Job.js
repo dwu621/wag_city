@@ -52,6 +52,9 @@ const Job = () => {
     const handleDogs = async (id) => {
         const dogs = await GetOwnerDogs(id)
         setOwnerDogs(dogs)
+        if (dogs[0]) {
+            setFormValues({...formValues, dogId: dogs[0].id})
+        }
     }
 
     const handleChange = async (e) => {
@@ -76,7 +79,7 @@ const Job = () => {
 
     useEffect(() => {
         handleJobs()
-        if(user && user.userType === "Owner") {
+        if(user && user.userType === "Owner" && user.id) {
             handleDogs(user.id)
             setFormValues({...formValues, ownerId: user.id})
         }
@@ -210,7 +213,6 @@ const Job = () => {
 
                 <Button 
                     disabled={
-                        !formValues.description ||
                         !formValues.title ||
                         !formValues.description ||
                         !formValues.walkDuration ||
@@ -223,7 +225,7 @@ const Job = () => {
                     </Button>
                 <>   </>
                 <Button 
-                    onClick={() => handleClick()} 
+                    onClick={handleClick} 
                     variant="outline-primary">
                     Cancel
                     </Button>
